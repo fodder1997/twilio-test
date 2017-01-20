@@ -26,10 +26,10 @@ var handlers = {
 		}
 		
 		console.log('Number = ', phone);		
-		/*
+		
 		client.calls.create({
 			url: "http://demo.twilio.com/docs/voice.xml",
-			to: "+447811259468",
+			to: phone,
 			from: "+441223750413"
 		}, function(err, call) {
 			if (err){
@@ -37,7 +37,7 @@ var handlers = {
 			}
 			process.stdout.write(call.sid);
 		});			
-		*/
+		
 	},
 	'Unhandled': function () {
         this.emit(':ask', 'I don\'t get it!', 'I don\'t get it!');
@@ -45,17 +45,10 @@ var handlers = {
 }
 
 exports.handler = function (event, context) {
-
-var phonePerson = 'Pauls';
-
-
-
 	var client = new twilio.RestClient(accountSid, authToken);
 	var alexa = Alexa.handler(event, context);
 	alexa.registerHandlers(handlers);
 	
 	console.log (accountSid);
 	alexa.execute();
-
-
 };
